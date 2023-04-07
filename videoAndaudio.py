@@ -31,7 +31,9 @@ import keyboard
 ##
 ########################
 
-#chang
+#cha
+
+FPS = 30
 
 class VideoRecorder():
 	
@@ -42,7 +44,7 @@ class VideoRecorder():
 		
 		self.open = True
 		self.device_index = 0
-		self.fps = 6               # fps should be the minimum constant rate at which the camera can
+		self.fps = 30          # fps should be the minimum constant rate at which the camera can
 		self.fourcc = "MJPG"       # capture images (with no decrease in speed over time; testing is required)
 		self.frameSize = (640,480) # video formats and sizes also depend and vary according to the camera used
 		self.video_filename = "temp_video.avi"
@@ -70,7 +72,7 @@ class VideoRecorder():
 					self.frame_counts += 1
 #					counter += 1
 #					timer_current = time.time() - timer_start
-					time.sleep(0.16)
+					time.sleep(1/self.fps)
 					
 					# Uncomment the following three lines to make the video to be
 					# displayed to screen while recording
@@ -225,7 +227,7 @@ def stop_AVrecording(filename):
 	print("JE SUISSSSSSSS LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 #	 Merging audio and video signal
 	
-	if abs(recorded_fps - 6) >= 0.01:    # If the fps rate was higher/lower than expected, re-encode it to the expected
+	if abs(recorded_fps - FPS) >= 0.01:    # If the fps rate was higher/lower than expected, re-encode it to the expected
 										
 		print ("Re-encoding")
 		cmd = "ffmpeg -r " + str(recorded_fps) + " -i temp_video.avi -pix_fmt yuv420p -r 6 temp_video2.avi"
