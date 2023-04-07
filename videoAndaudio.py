@@ -66,7 +66,7 @@ class VideoRecorder():
 		while(self.open==True):
 			ret, video_frame = self.video_cap.read()
 			if (ret==True):
-				
+					frame = cv2.rotate(video_frame, cv2.ROTATE_90_CLOCKWISE)
 					self.video_out.write(video_frame)
 #					print str(counter) + " " + str(self.frame_counts) + " frames written " + str(timer_current)
 					self.frame_counts += 1
